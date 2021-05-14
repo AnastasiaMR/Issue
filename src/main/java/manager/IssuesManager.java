@@ -1,6 +1,6 @@
 package manager;
 
-import domain.Issues;
+import domain.Issue;
 import repository.IssuesRepository;
 import java.util.Arrays;
 
@@ -11,13 +11,13 @@ public class IssuesManager {
         this.repository = repository;
     }
 
-    public Issues[] searchByAuthor(int id, String name) {
-        Issues[] result = new Issues[0];
-        for (Issues issues : repository.findAll( )) {
-            if (matches(issues, issues.getAuthor( ) )) {
-                Issues[] tmp = new Issues[result.length + 1];
+    public Issue[] searchByAuthor(int id, String name) {
+        Issue[] result = new Issue[0];
+        for (Issue issue : repository.findAll( )) {
+            if (matches( issue, issue.getAuthor( ) )) {
+                Issue[] tmp = new Issue[result.length + 1];
                 System.arraycopy( result, 0, tmp, 0, result.length );
-                tmp[tmp.length - 1] = issues;
+                tmp[tmp.length - 1] = issue;
                 result = tmp;
             }
         }
@@ -25,8 +25,8 @@ public class IssuesManager {
         return result;
     }
 
-    public boolean matches(Issues issues, String author) {
-        return issues.getAuthor( ).equalsIgnoreCase( author );
+    public boolean matches(Issue issue, String author) {
+        return issue.getAuthor( ).equalsIgnoreCase( author );
     }
 
 }

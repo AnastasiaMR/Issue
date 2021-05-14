@@ -1,25 +1,23 @@
 package repository;
 
-import domain.Issues;
+import domain.Issue;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.function.Predicate;
 
 public class IssuesRepository {
-    private Collection<Issues> items = new ArrayList<>();
-    private Predicate<? super Issues> issues;
+    private Collection<Issue> items = new ArrayList<>();
 
-    public void save(Issues item) {
+    public void save(Issue item) {
         items.add( item );
     }
 
-    public Collection<Issues> findAll() {
+    public Collection<Issue> findAll() {
         return items;
     }
 
-    public Issues findById(int id) {
-        for (Issues item : items) {
+    public Issue findById(int id) {
+        for (Issue item : items) {
             if (item.getId() == id) {
                 return item;
             }
@@ -28,7 +26,7 @@ public class IssuesRepository {
     }
 
     public void removeById(int id) {
-        items.removeIf(issues);
+        items.removeIf(item ->item.getId() == id);
     }
 
 }
